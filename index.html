@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictor Mundial 2026 - Transformación ExO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a3a52;
+            --accent-teal: #00c9a7;
+            --accent-cyan: #00d9ff;
+            --accent-coral: #ff6b5a;
+            --accent-purple: #9d4edd;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecf1 100%);
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e5a7a 100%);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .header-subtitle {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent-teal);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #00a88f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 201, 167, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        /* NAV TABS */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 20px;
+        }
+
+        .nav-tabs button {
+            padding: 12px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-light);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-tabs button.active {
+            color: var(--accent-teal);
+            border-bottom-color: var(--accent-teal);
+        }
+
+        .nav-tabs button:hover {
+            color: var(--primary);
+        }
+
+        /* STATS PANEL */
+        .stats-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-teal);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-value.accent {
+            color: var(--accent-teal);
+        }
+
+        /* MATCHES GRID */
+        .matches-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .match-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .match-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-teal);
+        }
+
+        .match-header {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .match-phase {
+            background: var(--accent-teal);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .match-teams {
+            margin-bottom: 16px;
+        }
+
+        .team {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .team-name {
+            flex: 1;
+        }
+
+        .team-flag {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .score-input {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            margin: 12px 0;
+        }
+
+        .score-input input {
+            width: 50px;
+            padding: 8px;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .score-input input:focus {
+            outline: none;
+            border-color: var(--accent-teal);
+            background: #f0fffe;
+        }
+
+        .score-separator {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .match-info {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+            line-height: 1.6;
+        }
+
+        .btn-save {
+            width: 100%;
+            margin-top: 12px;
+            background: var(--accent-teal);
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save:hover {
+            background: #00a88f;
+        }
+
+        .btn-save.saved {
+            background: #4caf50;
+        }
+
+        /* STADIUM SECTION */
+        .stadiums-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stadium-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stadium-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stadium-image {
+            width: 100%;
+            height: 160px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-teal));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .stadium-info {
+            padding: 16px;
+        }
+
+        .stadium-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .stadium-detail {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        /* CONFIG PANEL */
+        .config-panel {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            max-width: 500px;
+        }
+
+        .config-group {
+            margin-bottom: 24px;
+        }
+
+        .config-label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .config-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .config-input:focus {
+            outline: none;
+            border-color: var(--accent-teal);
+            background: #f0fffe;
+        }
+
+        .config-description {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        .config-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        /* ALERTS */
+        .alert {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .alert.success {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            color: #2e7d32;
+        }
+
+        .alert.info {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            color: #1565c0;
+        }
+
+        .alert.error {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            color: #c62828;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .matches-container {
+                grid-template-columns: 1fr;
+            }
+
+            .match-card {
+                margin-bottom: 10px;
+            }
+
+            .nav-tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .nav-tabs button {
+                padding: 10px 14px;
+                font-size: 12px;
+            }
+        }
+
+        /* HIDDEN */
+        .hidden {
+            display: none !important;
+        }
+
+        /* LOADING */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent-teal);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 400px;
+            width: 100%;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-confirm {
+            background: var(--accent-coral);
+            color: white;
+        }
+
+        .btn-cancel {
+            background: var(--border-color);
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-content">
+            <div>
+                <h1>⚽ MUNDIAL 2026</h1>
+                <div class="header-subtitle">Predictor de Resultados • Transformación ExO</div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="openConfigModal()">⚙️ Configuración</button>
+                <button class="btn btn-secondary" onclick="exportData()">📥 Exportar</button>
+                <button class="btn btn-secondary" onclick="resetData()">🔄 Reiniciar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTAINER -->
+    <div class="container">
+        <!-- STATS -->
+        <div class="stats-panel">
+            <div class="stat-card">
+                <div class="stat-label">Puntos Totales</div>
+                <div class="stat-value accent" id="totalPoints">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Partidos Completados</div>
+                <div class="stat-value" id="completedMatches">0 / 104</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Aciertos</div>
+                <div class="stat-value" id="correctPredictions">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Precisión</div>
+                <div class="stat-value" id="accuracy">0%</div>
+            </div>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="nav-tabs">
+            <button class="active" onclick="switchTab('groups')">📋 Grupos (72)</button>
+            <button onclick="switchTab('round16')">🎯 16vos (16)</button>
+            <button onclick="switchTab('quarters')">🔥 Cuartos (8)</button>
+            <button onclick="switchTab('semis')">👑 Semifinales (2)</button>
+            <button onclick="switchTab('final')">🏆 Final (2)</button>
+            <button onclick="switchTab('stadiums')">🏟️ Estadios</button>
+        </div>
+
+        <!-- MATCHES -->
+        <div id="matchesContainer" class="matches-container"></div>
+        <div id="stadiumsContainer" class="hidden"></div>
+    </div>
+
+    <!-- CONFIG MODAL -->
+    <div class="modal" id="configModal">
+        <div class="modal-content">
+            <div class="modal-title">Configuración de Almacenamiento</div>
+            
+            <div class="alert info">
+                📌 Configura una hoja de cálculo para sincronizar tus predicciones automáticamente
+            </div>
+
+            <div class="config-group">
+                <label class="config-label">URL de Google Sheets (Apps Script)</label>
+                <textarea class="config-input" id="sheetsUrl" rows="3" placeholder="https://script.google.com/macros/d/..."></textarea>
+                <div class="config-description">Obtén esta URL deployando un Apps Script con la función doPost(e)</div>
+            </div>
+
+            <div class="config-group">
+                <label class="config-label">ID de Usuario</label>
+                <input type="text" class="config-input" id="userId" placeholder="ej: usuario123">
+                <div class="config-description">Identificador único para tus predicciones</div>
+            </div>
+
+            <div class="config-group">
+                <label class="config-label">Nombre</label>
+                <input type="text" class="config-input" id="userName" placeholder="Tu nombre">
+                <div class="config-description">Se mostrará en la hoja de cálculo</div>
+            </div>
+
+            <div class="config-buttons">
+                <button class="btn btn-primary" onclick="saveConfig()">💾 Guardar</button>
+                <button class="btn btn-secondary" onclick="closeConfigModal()">❌ Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // CONFIGURACIÓN
+        const CONFIG = {
+            sheetsUrl: localStorage.getItem('sheetsUrl') || '',
+            userId: localStorage.getItem('userId') || 'usuario_' + Date.now(),
+            userName: localStorage.getItem('userName') || 'Predictor'
+        };
+
+        // DATOS DEL MUNDIAL 2026
+        const MUNDIAL_DATA = {
+            grupos: [
+                {
+                    id: 'A',
+                    nombre: 'Grupo A',
+                    equipo1: '🇲🇽 México',
+                    equipo2: '🇿🇦 Sudáfrica',
+                    equipo3: '🇰🇷 Corea del Sur',
+                    equipo4: '🇨🇿 República Checa'
+                },
+                {
+                    id: 'B',
+                    nombre: 'Grupo B',
+                    equipo1: '🇨🇦 Canadá',
+                    equipo2: '🇧🇦 Bosnia y Herzegovina',
+                    equipo3: '🇶🇦 Qatar',
+                    equipo4: '🇨🇭 Suiza'
+                },
+                {
+                    id: 'C',
+                    nombre: 'Grupo C',
+                    equipo1: '🇧🇷 Brasil',
+                    equipo2: '🇲🇦 Marruecos',
+                    equipo3: '🇭🇹 Haití',
+                    equipo4: '🇬🇧 Escocia'
+                },
+                {
+                    id: 'D',
+                    nombre: 'Grupo D',
+                    equipo1: '🇺🇸 Estados Unidos',
+                    equipo2: '🇵🇾 Paraguay',
+                    equipo3: '🇦🇺 Australia',
+                    equipo4: '🇹🇷 Turquía'
+                },
+                {
+                    id: 'E',
+                    nombre: 'Grupo E',
+                    equipo1: '🇩🇪 Alemania',
+                    equipo2: '🇨🇼 Curazao',
+                    equipo3: '🇨🇮 Costa de Marfil',
+                    equipo4: '🇪🇨 Ecuador'
+                },
+                {
+                    id: 'F',
+                    nombre: 'Grupo F',
+                    equipo1: '🇳🇱 Países Bajos',
+                    equipo2: '🇯🇵 Japón',
+                    equipo3: '🇸🇪 Suecia',
+                    equipo4: '🇹🇳 Túnez'
+                },
+                {
+                    id: 'G',
+                    nombre: 'Grupo G',
+                    equipo1: '🇧🇪 Bélgica',
+                    equipo2: '🇪🇬 Egipto',
+                    equipo3: '🇮🇷 Irán',
+                    equipo4: '🇳🇿 Nueva Zelanda'
+                },
+                {
+                    id: 'H',
+                    nombre: 'Grupo H',
+                    equipo1: '🇪🇸 España',
+                    equipo2: '🇨🇻 Cabo Verde',
+                    equipo3: '🇸🇦 Arabia Saudita',
+                    equipo4: '🇺🇾 Uruguay'
+                },
+                {
+                    id: 'I',
+                    nombre: 'Grupo I',
+                    equipo1: '🇫🇷 Francia',
+                    equipo2: '🇸🇳 Senegal',
+                    equipo3: '🇮🇶 Irak',
+                    equipo4: '🇳🇴 Noruega'
+                },
+                {
+                    id: 'J',
+                    nombre: 'Grupo J',
+                    equipo1: '🇦🇷 Argentina',
+                    equipo2: '🇩🇿 Argelia',
+                    equipo3: '🇦🇹 Austria',
+                    equipo4: '🇯🇴 Jordania'
+                },
+                {
+                    id: 'K',
+                    nombre: 'Grupo K',
+                    equipo1: '🇵🇹 Portugal',
+                    equipo2: '🇨🇩 RD Congo',
+                    equipo3: '🇺🇿 Uzbekistán',
+                    equipo4: '🇨🇴 Colombia'
+                },
+                {
+                    id: 'L',
+                    nombre: 'Grupo L',
+                    equipo1: '🇬🇧 Inglaterra',
+                    equipo2: '🇭🇷 Croacia',
+                    equipo3: '🇬🇭 Ghana',
+                    equipo4: '🇵🇦 Panamá'
+                }
+            ],
+            stadiums: [
+                { name: 'MetLife Stadium', city: 'New Jersey', country: 'USA', capacity: 82500, year: 1976 },
+                { name: 'SoFi Stadium', city: 'Los Ángeles', country: 'USA', capacity: 70240, year: 2020 },
+                { name: 'AT&T Stadium', city: 'Arlington, Texas', country: 'USA', capacity: 80000, year: 2009 },
+                { name: 'NRG Stadium', city: 'Houston, Texas', country: 'USA', capacity: 72220, year: 2002 },
+                { name: 'Arrowhead Stadium', city: 'Kansas City', country: 'USA', capacity: 76416, year: 1972 },
+                { name: 'Mercedes-Benz Stadium', city: 'Atlanta', country: 'USA', capacity: 71000, year: 2017 },
+                { name: 'Hard Rock Stadium', city: 'Miami', country: 'USA', capacity: 65326, year: 1987 },
+                { name: 'Estadio Azteca', city: 'Ciudad de México', country: 'México', capacity: 87523, year: 1966 },
+                { name: 'BMO Field', city: 'Toronto', country: 'Canadá', capacity: 45975, year: 1999 },
+                { name: 'BC Place', city: 'Vancouver', country: 'Canadá', capacity: 54500, year: 1983 },
+                { name: 'Gillette Stadium', city: 'Boston', country: 'USA', capacity: 65878, year: 2002 },
+                { name: 'Lumen Field', city: 'Seattle', country: 'USA', capacity: 68740, year: 2002 },
+                { name: 'Lincoln Financial Field', city: 'Filadelfia', country: 'USA', capacity: 69176, year: 2003 },
+                { name: 'Empower Field', city: 'Denver', country: 'USA', capacity: 76125, year: 2001 },
+                { name: 'Soldier Field', city: 'Chicago', country: 'USA', capacity: 61500, year: 1926 },
+                { name: 'Allegiant Stadium', city: 'Las Vegas', country: 'USA', capacity: 61000, year: 2020 }
+            ]
+        };
+
+        // GENERAR PARTIDOS DE GRUPOS
+        function generateGroupMatches() {
+            const matches = [];
+            let matchId = 1;
+
+            MUNDIAL_DATA.grupos.forEach(grupo => {
+                const equipos = [grupo.equipo1, grupo.equipo2, grupo.equipo3, grupo.equipo4];
+                
+                // Todos contra todos (6 partidos por grupo)
+                for (let i = 0; i < equipos.length; i++) {
+                    for (let j = i + 1; j < equipos.length; j++) {
+                        matches.push({
+                            id: matchId++,
+                            phase: 'groups',
+                            group: grupo.id,
+                            home: equipos[i],
+                            away: equipos[j],
+                            stadium: MUNDIAL_DATA.stadiums[Math.floor(Math.random() * MUNDIAL_DATA.stadiums.length)].name,
+                            points: 1
+                        });
+                    }
+                }
+            });
+
+            return matches;
+        }
+
+        // GENERAR PARTIDOS DE FASES ELIMINATORIAS
+        function generateKnockoutMatches() {
+            const matches = [];
+            let matchId = 100;
+
+            // 16vos de Final (16 partidos)
+            const matchups16 = [
+                { home: '1A', away: '2B', points: 2 },
+                { home: '1B', away: '2A', points: 2 },
+                { home: '1C', away: '2D', points: 2 },
+                { home: '1D', away: '2C', points: 2 },
+                { home: '1E', away: '2F', points: 2 },
+                { home: '1F', away: '2E', points: 2 },
+                { home: '1G', away: '2H', points: 2 },
+                { home: '1H', away: '2G', points: 2 },
+                { home: '1I', away: '2J', points: 2 },
+                { home: '1J', away: '2I', points: 2 },
+                { home: '1K', away: '2L', points: 2 },
+                { home: '1L', away: '2K', points: 2 },
+                { home: '1A', away: '2B', points: 2 },
+                { home: '1B', away: '2A', points: 2 },
+                { home: '1C', away: '2D', points: 2 },
+                { home: '1D', away: '2C', points: 2 }
+            ];
+
+            matchups16.forEach(m => {
+                matches.push({
+                    id: matchId++,
+                    phase: 'round16',
+                    home: `Ganador ${m.home}`,
+                    away: `Ganador ${m.away}`,
+                    stadium: MUNDIAL_DATA.stadiums[Math.floor(Math.random() * MUNDIAL_DATA.stadiums.length)].name,
+                    points: m.points
+                });
+            });
+
+            // Cuartos de Final (8 partidos)
+            for (let i = 0; i < 8; i++) {
+                matches.push({
+                    id: matchId++,
+                    phase: 'quarters',
+                    home: `Ganador 16vo ${i*2 + 1}`,
+                    away: `Ganador 16vo ${i*2 + 2}`,
+                    stadium: MUNDIAL_DATA.stadiums[Math.floor(Math.random() * MUNDIAL_DATA.stadiums.length)].name,
+                    points: 5
+                });
+            }
+
+            // Semifinales (2 partidos)
+            for (let i = 0; i < 2; i++) {
+                matches.push({
+                    id: matchId++,
+                    phase: 'semis',
+                    home: `Ganador Cuarto ${i*2 + 1}`,
+                    away: `Ganador Cuarto ${i*2 + 2}`,
+                    stadium: MUNDIAL_DATA.stadiums[Math.floor(Math.random() * MUNDIAL_DATA.stadiums.length)].name,
+                    points: 10
+                });
+            }
+
+            // Final (1 partido)
+            matches.push({
+                id: matchId++,
+                phase: 'final',
+                home: 'Ganador SF 1',
+                away: 'Ganador SF 2',
+                stadium: MUNDIAL_DATA.stadiums[0].name,
+                points: 20
+            });
+
+            // 3º Lugar (1 partido)
+            matches.push({
+                id: matchId++,
+                phase: 'final',
+                home: 'Perdedor SF 1',
+                away: 'Perdedor SF 2',
+                stadium: MUNDIAL_DATA.stadiums[1].name,
+                points: 5
+            });
+
+            return matches;
+        }
+
+        // OBTENER TODOS LOS PARTIDOS
+        let ALL_MATCHES = [...generateGroupMatches(), ...generateKnockoutMatches()];
+
+        // PREDICTIONS STORAGE
+        let predictions = JSON.parse(localStorage.getItem('predictions') || '{}');
+
+        // SWITCH TAB
+        function switchTab(tab) {
+            document.querySelectorAll('.nav-tabs button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if (tab === 'stadiums') {
+                renderStadiums();
+            } else {
+                renderMatches(tab);
+            }
+        }
+
+        // RENDER MATCHES
+        function renderMatches(phase = 'groups') {
+            const container = document.getElementById('matchesContainer');
+            const stadiumsContainer = document.getElementById('stadiumsContainer');
+            stadiumsContainer.classList.add('hidden');
+            container.classList.remove('hidden');
+
+            const matches = phase === 'groups' 
+                ? ALL_MATCHES.filter(m => m.phase === 'groups')
+                : ALL_MATCHES.filter(m => m.phase === phase);
+
+            container.innerHTML = matches.map(match => {
+                const pred = predictions[match.id] || {};
+                return `
+                    <div class="match-card">
+                        <div class="match-header">
+                            <span class="match-phase">${match.phase.toUpperCase()}</span>
+                            <span>${match.phase === 'groups' ? `Grupo ${match.group}` : ''}</span>
+                        </div>
+                        <div class="match-teams">
+                            <div class="team">
+                                <span class="team-name">${match.home}</span>
+                            </div>
+                            <div class="score-input">
+                                <input type="number" id="pred_${match.id}_home" value="${pred.home || ''}" min="0" max="10" placeholder="0">
+                                <span class="score-separator">-</span>
+                                <input type="number" id="pred_${match.id}_away" value="${pred.away || ''}" min="0" max="10" placeholder="0">
+                            </div>
+                            <div class="team">
+                                <span class="team-name">${match.away}</span>
+                            </div>
+                        </div>
+                        <div class="match-info">
+                            📍 ${match.stadium}
+                        </div>
+                        <button class="btn-save" onclick="savePrediction(${match.id}, '${match.phase}')">
+                            💾 Guardar Predicción
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            updateStats();
+        }
+
+        // RENDER STADIUMS
+        function renderStadiums() {
+            const container = document.getElementById('matchesContainer');
+            const stadiumsContainer = document.getElementById('stadiumsContainer');
+            
+            container.classList.add('hidden');
+            stadiumsContainer.classList.remove('hidden');
+
+            stadiumsContainer.innerHTML = `
+                <div class="stadiums-grid">
+                    ${MUNDIAL_DATA.stadiums.map((stadium, idx) => `
+                        <div class="stadium-card">
+                            <div class="stadium-image">🏟️</div>
+                            <div class="stadium-info">
+                                <div class="stadium-name">${stadium.name}</div>
+                                <div class="stadium-detail">📍 ${stadium.city}, ${stadium.country}</div>
+                                <div class="stadium-detail">👥 Capacidad: ${stadium.capacity.toLocaleString()}</div>
+                                <div class="stadium-detail">🏗️ Inaugurado: ${stadium.year}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        // SAVE PREDICTION
+        function savePrediction(matchId, phase) {
+            const homeInput = document.getElementById(`pred_${matchId}_home`);
+            const awayInput = document.getElementById(`pred_${matchId}_away`);
+
+            if (homeInput.value === '' || awayInput.value === '') {
+                alert('⚠️ Por favor completa ambas predicciones');
+                return;
+            }
+
+            predictions[matchId] = {
+                home: parseInt(homeInput.value),
+                away: parseInt(awayInput.value),
+                phase: phase,
+                timestamp: new Date().toISOString()
+            };
+
+            localStorage.setItem('predictions', JSON.stringify(predictions));
+
+            // Enviar a Google Sheets si está configurado
+            if (CONFIG.sheetsUrl) {
+                syncToSheets(matchId);
+            }
+
+            event.target.classList.add('saved');
+            event.target.textContent = '✅ Guardado';
+            setTimeout(() => {
+                event.target.classList.remove('saved');
+                event.target.textContent = '💾 Guardar Predicción';
+            }, 2000);
+
+            updateStats();
+        }
+
+        // SYNC TO SHEETS
+        function syncToSheets(matchId) {
+            const match = ALL_MATCHES.find(m => m.id === matchId);
+            const pred = predictions[matchId];
+
+            const data = {
+                userId: CONFIG.userId,
+                userName: CONFIG.userName,
+                matchId: matchId,
+                homeTeam: match.home,
+                awayTeam: match.away,
+                predictedHome: pred.home,
+                predictedAway: pred.away,
+                phase: match.phase,
+                timestamp: new Date().toISOString()
+            };
+
+            fetch(CONFIG.sheetsUrl, {
+                method: 'POST',
+                body: JSON.stringify(data)
+            }).catch(err => console.log('Sincronización con Sheets pendiente'));
+        }
+
+        // UPDATE STATS
+        function updateStats() {
+            const completedMatches = Object.keys(predictions).length;
+            const totalMatches = ALL_MATCHES.length;
+            let totalPoints = 0;
+            let correctCount = 0;
+
+            Object.keys(predictions).forEach(matchId => {
+                const match = ALL_MATCHES.find(m => m.id == matchId);
+                const pred = predictions[matchId];
+                // Placeholder para cálculo de puntos (se implementaría cuando hay resultados reales)
+            });
+
+            document.getElementById('totalPoints').textContent = totalPoints;
+            document.getElementById('completedMatches').textContent = `${completedMatches} / ${totalMatches}`;
+            document.getElementById('correctPredictions').textContent = correctCount;
+            document.getElementById('accuracy').textContent = completedMatches > 0 
+                ? `${Math.round((correctCount / completedMatches) * 100)}%`
+                : '0%';
+        }
+
+        // CONFIG MODAL
+        function openConfigModal() {
+            document.getElementById('configModal').classList.add('active');
+            document.getElementById('sheetsUrl').value = CONFIG.sheetsUrl;
+            document.getElementById('userId').value = CONFIG.userId;
+            document.getElementById('userName').value = CONFIG.userName;
+        }
+
+        function closeConfigModal() {
+            document.getElementById('configModal').classList.remove('active');
+        }
+
+        function saveConfig() {
+            CONFIG.sheetsUrl = document.getElementById('sheetsUrl').value;
+            CONFIG.userId = document.getElementById('userId').value;
+            CONFIG.userName = document.getElementById('userName').value;
+
+            localStorage.setItem('sheetsUrl', CONFIG.sheetsUrl);
+            localStorage.setItem('userId', CONFIG.userId);
+            localStorage.setItem('userName', CONFIG.userName);
+
+            closeConfigModal();
+            alert('✅ Configuración guardada');
+        }
+
+        // EXPORT DATA
+        function exportData() {
+            const csv = ['matchId,phase,team1,team2,pred_home,pred_away,timestamp'];
+            
+            Object.keys(predictions).forEach(matchId => {
+                const match = ALL_MATCHES.find(m => m.id == matchId);
+                const pred = predictions[matchId];
+                csv.push(`${matchId},"${match.phase}","${match.home}","${match.away}",${pred.home},${pred.away},"${pred.timestamp}"`);
+            });
+
+            const blob = new Blob([csv.join('\n')], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `mundial2026_predicciones_${new Date().toISOString().split('T')[0]}.csv`;
+            a.click();
+        }
+
+        // RESET DATA
+        function resetData() {
+            if (confirm('⚠️ ¿Estás seguro? Se borrarán todas las predicciones')) {
+                predictions = {};
+                localStorage.removeItem('predictions');
+                renderMatches();
+                updateStats();
+            }
+        }
+
+        // INIT
+        window.addEventListener('DOMContentLoaded', () => {
+            renderMatches('groups');
+            updateStats();
+        });
+
+        // Close modal on outside click
+        document.getElementById('configModal').addEventListener('click', (e) => {
+            if (e.target.id === 'configModal') closeConfigModal();
+        });
+    </script>
+</body>
+</html>
