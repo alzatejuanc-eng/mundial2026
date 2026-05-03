@@ -1,0 +1,249 @@
+{
+  "tournament": {
+    "name": "Copa Mundial de la FIFA 2026",
+    "year": 2026,
+    "host_countries": ["Estados Unidos", "México", "Canadá"],
+    "total_matches": 104,
+    "total_teams": 48,
+    "groups": 12,
+    "teams_per_group": 4,
+    "start_date": "11 de junio de 2026",
+    "end_date": "19 de julio de 2026",
+    "format": "48 equipos - 12 grupos de 4 equipos cada uno"
+  },
+  "groups": {
+    "A": {
+      "name": "Grupo A",
+      "head_seed": "México",
+      "teams": ["México", "Sudáfrica", "Corea del Sur", "República Checa"]
+    },
+    "B": {
+      "name": "Grupo B",
+      "head_seed": "Canadá",
+      "teams": ["Canadá", "Bosnia y Herzegovina", "Catar", "Suiza"]
+    },
+    "C": {
+      "name": "Grupo C",
+      "head_seed": "Brasil",
+      "teams": ["Brasil", "Marruecos", "Haití", "Escocia"]
+    },
+    "D": {
+      "name": "Grupo D",
+      "head_seed": "Estados Unidos",
+      "teams": ["Estados Unidos", "Perú", "Paraguay", "Nueva Zelanda"]
+    },
+    "E": {
+      "name": "Grupo E",
+      "head_seed": "Alemania",
+      "teams": ["Alemania", "Curazao", "Costa de Marfil", "Ecuador"]
+    },
+    "F": {
+      "name": "Grupo F",
+      "head_seed": "Países Bajos",
+      "teams": ["Países Bajos", "Japón", "Suecia", "Túnez"]
+    },
+    "G": {
+      "name": "Grupo G",
+      "head_seed": "Bélgica",
+      "teams": ["Bélgica", "Nigeria", "Croacia", "Turquía"]
+    },
+    "H": {
+      "name": "Grupo H",
+      "head_seed": "España",
+      "teams": ["España", "Uruguay", "Arabia Saudita", "Cabo Verde"]
+    },
+    "I": {
+      "name": "Grupo I",
+      "head_seed": "Francia",
+      "teams": ["Francia", "Noruega", "Senegal", "Australia"]
+    },
+    "J": {
+      "name": "Grupo J",
+      "head_seed": "Argentina",
+      "teams": ["Argentina", "Argelia", "Austria", "Jordania"]
+    },
+    "K": {
+      "name": "Grupo K",
+      "head_seed": "Portugal",
+      "teams": ["Portugal", "Colombia", "R.D. del Congo", "Uzbekistán"]
+    },
+    "L": {
+      "name": "Grupo L",
+      "head_seed": "Inglaterra",
+      "teams": ["Inglaterra", "Panamá", "Ghana", "Croacia"]
+    }
+  },
+  "stadiums": [
+    {
+      "id": 1,
+      "name": "Estadio Azteca",
+      "city": "Ciudad de México",
+      "country": "México",
+      "capacity": 87523,
+      "year_opened": 1966,
+      "notes": "Sede del partido inaugural"
+    },
+    {
+      "id": 2,
+      "name": "Estadio Akron",
+      "city": "Guadalajara",
+      "country": "México",
+      "capacity": 49850,
+      "year_opened": 2010
+    },
+    {
+      "id": 3,
+      "name": "Estadio BBVA",
+      "city": "Monterrey",
+      "country": "México",
+      "capacity": 53500,
+      "year_opened": 2015
+    },
+    {
+      "id": 4,
+      "name": "MetLife Stadium",
+      "city": "Nueva York/Nueva Jersey",
+      "country": "USA",
+      "capacity": 82500,
+      "year_opened": 2010,
+      "notes": "Sede de la final"
+    },
+    {
+      "id": 5,
+      "name": "SoFi Stadium",
+      "city": "Los Ángeles",
+      "country": "USA",
+      "capacity": 70240,
+      "year_opened": 2020
+    },
+    {
+      "id": 6,
+      "name": "AT&T Stadium",
+      "city": "Dallas",
+      "country": "USA",
+      "capacity": 80000,
+      "year_opened": 2009
+    },
+    {
+      "id": 7,
+      "name": "Mercedes-Benz Stadium",
+      "city": "Atlanta",
+      "country": "USA",
+      "capacity": 71000,
+      "year_opened": 2017
+    },
+    {
+      "id": 8,
+      "name": "Levi's Stadium",
+      "city": "San Francisco/Santa Clara",
+      "country": "USA",
+      "capacity": 68500,
+      "year_opened": 2014
+    },
+    {
+      "id": 9,
+      "name": "Arrowhead Stadium",
+      "city": "Kansas City",
+      "country": "USA",
+      "capacity": 76416,
+      "year_opened": 1972
+    },
+    {
+      "id": 10,
+      "name": "Hard Rock Stadium",
+      "city": "Miami",
+      "country": "USA",
+      "capacity": 64767,
+      "year_opened": 1987
+    },
+    {
+      "id": 11,
+      "name": "BMO Field",
+      "city": "Toronto",
+      "country": "Canadá",
+      "capacity": 45736,
+      "year_opened": 2007
+    },
+    {
+      "id": 12,
+      "name": "BC Place",
+      "city": "Vancouver",
+      "country": "Canadá",
+      "capacity": 54320,
+      "year_opened": 1983
+    }
+  ],
+  "knockout_format": {
+    "round_of_32": {
+      "name": "Dieciseisavos de Final",
+      "teams": 32,
+      "matches": 16,
+      "qualification": "1º y 2º de cada grupo (24) + 8 mejores terceros"
+    },
+    "round_of_16": {
+      "name": "Octavos de Final",
+      "teams": 16,
+      "matches": 8
+    },
+    "quarter_finals": {
+      "name": "Cuartos de Final",
+      "teams": 8,
+      "matches": 4
+    },
+    "semi_finals": {
+      "name": "Semifinales",
+      "teams": 4,
+      "matches": 2
+    },
+    "third_place": {
+      "name": "Tercer Puesto",
+      "teams": 2,
+      "matches": 1
+    },
+    "final": {
+      "name": "Final",
+      "teams": 2,
+      "matches": 1,
+      "stadium": "MetLife Stadium (Nueva York)"
+    }
+  },
+  "matches_breakdown": {
+    "group_stage": 72,
+    "round_of_32": 16,
+    "round_of_16": 8,
+    "quarter_finals": 4,
+    "semi_finals": 2,
+    "third_place": 1,
+    "final": 1,
+    "total": 104
+  },
+  "app_features": {
+    "prediction_storage": "localStorage",
+    "export_format": "Excel XLSX",
+    "user_data": {
+      "fields": ["Nombre completo", "Email", "Equipo favorito", "Teléfono"],
+      "required": ["Nombre completo", "Email"]
+    },
+    "responsive": true,
+    "offline_capable": true,
+    "no_backend": true,
+    "phases": [
+      "Grupos (12 grupos)",
+      "Dieciseisavos (32 equipos)",
+      "Octavos (16 equipos)",
+      "Cuartos (8 equipos)",
+      "Semifinales (4 equipos)",
+      "Final (2 equipos)"
+    ]
+  },
+  "design_colors": {
+    "primary": "#0f172a",
+    "accent_teal": "#00d9ff",
+    "accent_green": "#10b981",
+    "accent_gold": "#fbbf24",
+    "light_bg": "#f0f9ff",
+    "card_bg": "#ffffff",
+    "text_dark": "#0f172a",
+    "text_light": "#6b7280"
+  }
+}
